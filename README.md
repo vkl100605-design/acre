@@ -55,7 +55,7 @@ That isn’t three separate incidents. **It’s one system squeezed by three mas
 | **Source** | [GitHub — vkl100605-design/acre](https://github.com/vkl100605-design/acre) |
 | **Live demo** | [Hugging Face Space — vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre) — **Streamlit UI** on `/`, **OpenEnv API** on `/health`, `/reset`, `/step`, `/state`, `/api` |
 | **Re-run training** | [Open in Colab](https://colab.research.google.com/github/vkl100605-design/acre/blob/main/ACRExx_Training_Colab.ipynb) · notebook: `ACRExx_Training_Colab.ipynb` |
-| **Story / blog** | [`Blog.md`](https://github.com/vkl100605-design/acre/blob/main/Blog.md) — narrative walkthrough of ACRE++ (multi-agent conflict, what we built, why it matters) |
+| **Story / blog** | [`Blog.md` on [Hugging Face Spaces — vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre/blob/main/Blog.md) |
 
 ---
 

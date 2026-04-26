@@ -115,22 +115,25 @@ def plot_cost_latency_uptime_combo(history: List[Dict[str, Any]]):
     return fig
 
 
-def plot_before_after(random_eval: Dict[str, float], trained_eval: Dict[str, float]):
-    fig, axes = plt.subplots(1, 4, figsize=(12.5, 3.2))
+def plot_before_after(random_eval: Dict[str, Any], trained_eval: Dict[str, Any]):
+    """Side-by-side bars for post-training eval: random baseline vs trained Q-policy (updates when `result` changes)."""
+    fig, axes = plt.subplots(1, 4, figsize=(12.5, 3.4))
+    bar_colors = ("#c44e52", "#2c7bb6")  # random, trained — consistent with Colab summary figure
     metrics = [
-        ("Reward", random_eval["reward"], trained_eval["reward"]),
-        ("Cost", random_eval["cost"], trained_eval["cost"]),
-        ("Uptime %", random_eval["uptime"], trained_eval["uptime"]),
+        ("Episode reward\n(↑ better)", float(random_eval["reward"]), float(trained_eval["reward"])),
+        ("Total cost\n(↓ better)", float(random_eval["cost"]), float(trained_eval["cost"])),
+        ("Uptime %\n(↑ better)", float(random_eval["uptime"]), float(trained_eval["uptime"])),
         (
-            "Avg latency (ms)",
+            "Avg latency (ms / step)\n(↓ better)",
             float(random_eval.get("avg_latency_ms", 0.0)),
             float(trained_eval.get("avg_latency_ms", 0.0)),
         ),
     ]
     for idx, (name, random_value, trained_value) in enumerate(metrics):
-        axes[idx].bar(["Random", "Trained"], [random_value, trained_value], color=["#94a3b8", "#2563eb"])
-        axes[idx].set_title(name)
-        axes[idx].grid(axis="y", alpha=0.2, linestyle="--")
-    fig.suptitle("Before vs After: Random vs Trained RL")
+        ax = axes[idx]
+        ax.bar(["Random", "Trained"], [random_value, trained_value], color=bar_colors, width=0.55)
+        ax.set_title(name, fontsize=10)
+        ax.grid(axis="y", alpha=0.25, linestyle="--")
+    fig.suptitle("Same eval protocol — random baseline vs trained policy", fontsize=12, fontweight="bold", y=1.06)
     fig.tight_layout()
     return fig

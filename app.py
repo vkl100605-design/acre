@@ -135,11 +135,15 @@ def _render_metrics(result: Optional[Dict[str, Any]]) -> None:
 
 
 def _render_before_after(result: Optional[Dict[str, Any]]) -> None:
+    st.markdown("### Random vs Trained (same eval)")
     if not result:
         st.info("Train Incident Recovery to populate Random vs Trained comparison.")
         return
-    trained = result.get("trained_eval", {})
-    random_eval = result.get("random_eval", {})
+    trained = result.get("trained_eval") or {}
+    random_eval = result.get("random_eval") or {}
+    if not trained or not random_eval:
+        st.info("Train Incident Recovery to populate Random vs Trained comparison.")
+        return
     st.code(
         "Random:\n"
         f"Reward: {float(random_eval.get('reward', 0.0)):.2f} | Cost: {float(random_eval.get('cost', 0.0)):.2f} | "
@@ -151,6 +155,12 @@ def _render_before_after(result: Optional[Dict[str, Any]]) -> None:
         f"Avg latency: {float(trained.get('avg_latency_ms', 0.0)):.1f} ms",
         language="text",
     )
+    try:
+        fig = plotting.plot_before_after(random_eval, trained)
+        st.pyplot(fig, use_container_width=True)
+    finally:
+        plt.close(fig)
+    st.caption("Chart updates automatically after each training run (values from the same eval rollouts as the text above).")
 
 
 def _pyplot_no_jitter(fig) -> None:

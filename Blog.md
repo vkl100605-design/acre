@@ -3,6 +3,10 @@
 Reinforcement Learning · Cloud Ops · Open Source · 
 April 26, 2026
 
+**Live demo (Hugging Face Spaces):** [vkl1006/acre — Streamlit UI + OpenEnv API](https://huggingface.co/spaces/vkl1006/acre)
+
+**Source code:** [github.com/vkl100605-design/acre](https://github.com/vkl100605-design/acre)
+
 ---
 
 It's 2 a.m. The dashboard looks fine — until it doesn't.
@@ -101,9 +105,9 @@ maxing one dial.
 python train_clean.py --task-id incident_recovery --episodes 80 --seed 42
 ```
 
-Live demo: https://huggingface.co/spaces/vkl1006/acre
+**Live demo:** [Hugging Face Space — vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre)
 
-Source: https://github.com/vkl100605-design/acre
+**Source:** [GitHub — vkl100605-design/acre](https://github.com/vkl100605-design/acre)
 
 Colab: https://colab.research.google.com/github/vkl100605-design/acre/blob/main/ACRExx_Training_Colab.ipynb
 

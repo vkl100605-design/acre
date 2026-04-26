@@ -26,12 +26,11 @@ A compact RL environment simulating cloud-style ops under realistic
 constraints: delayed capacity effects, noisy telemetry, and three
 competing agents who can disagree on every single step.
 
-| Agent     |                             Role                                         |
-|-----------|--------------------------------------------------------------------------|
-|RL agent   | Tabular Q-learning — proposes actions based on learned long-horizon value|
-|Cost agent | Rule-based FinOps guardrails — blocks wasteful scaling                   |
-|Latency    | UX guardrail — escalates when latency crosses thresholds                 |
-|agent                                                                                 |
+| Agent       |                           Role                                         |
+|------------ |------------------------------------------------------------------------|
+|RL agent     |Tabular Q-learning proposes actions based on learned long-horizon value |
+|Cost agent   | Rule-based FinOps guardrails — blocks wasteful scaling                 |
+|Latency agent| UX guardrail — escalates when latency crosses thresholds               |
 
 When these agents disagree, overrides fire.
 The final action may not be what the RL policy proposed — and that's
@@ -103,7 +102,9 @@ python train_clean.py --task-id incident_recovery --episodes 80 --seed 42
 ```
 
 Live demo: https://huggingface.co/spaces/vkl1006/acre
+
 Source: https://github.com/vkl100605-design/acre
+
 Colab: https://colab.research.google.com/github/vkl100605-design/acre/blob/main/ACRExx_Training_Colab.ipynb
 
 Apache 2.0 — open source, run it, fork it, break it.

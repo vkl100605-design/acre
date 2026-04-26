@@ -55,6 +55,7 @@ That isn’t three separate incidents. **It’s one system squeezed by three mas
 | **Source** | [GitHub — vkl100605-design/acre](https://github.com/vkl100605-design/acre) |
 | **Live demo** | [Hugging Face Space — vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre) — **Streamlit UI** on `/`, **OpenEnv API** on `/health`, `/reset`, `/step`, `/state`, `/api` |
 | **Re-run training** | [Open in Colab](https://colab.research.google.com/github/vkl100605-design/acre/blob/main/ACRExx_Training_Colab.ipynb) · notebook: `ACRExx_Training_Colab.ipynb` |
+| **Story / blog** | [`Blog.md`](https://github.com/vkl100605-design/acre/blob/main/Blog.md) — narrative walkthrough of ACRE++ (multi-agent conflict, what we built, why it matters) |
 
 ---
 
@@ -261,6 +262,7 @@ Every **autoscaler**, **SRE playbook**, and **FinOps guardrail** eventually answ
 
 | Area | Files |
 |------|--------|
+| Narrative | [`Blog.md`](Blog.md) — long-form project story (companion to this README) |
 | Env | `env.py`, `tasks.py`, `reward.py` |
 | Agents | `rl_agent.py`, `cost_agent.py`, `latency_agent.py` |
 | Training / eval | `train_clean.py`, `train.py`, `evaluation.py` |

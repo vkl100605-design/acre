@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+import matplotlib.pyplot as plt
 import streamlit as st
 
 from evaluation import run_episode, save_training_artifacts, train_q_learning
@@ -106,13 +107,11 @@ def _render_latency_override_banner() -> None:
 
 
 def _render_hero() -> None:
+    st.title("ACRE++")
     st.markdown(
-        """
-        <h1 style='text-align:center;'>🚀 ACRE++</h1>
-        <p style='text-align:center; font-size:18px;'>
-        AI learning cloud trade-offs between cost, reliability, and user experience (latency)
-        </p>
-        """,
+        "<p style='text-align:center;font-size:1.1rem;'>"
+        "AI learning cloud trade-offs between cost, reliability, and user experience (latency)"
+        "</p>",
         unsafe_allow_html=True,
     )
     st.info(
@@ -154,26 +153,34 @@ def _render_before_after(result: Optional[Dict[str, Any]]) -> None:
     )
 
 
+def _pyplot_no_jitter(fig) -> None:
+    """Fixed-size plots avoid width='stretch' reflow (noticeable on HF / nginx + wide layout)."""
+    st.pyplot(fig, use_container_width=False)
+    plt.close(fig)
+
+
 def _render_graphs(history: Optional[List[Dict[str, Any]]]) -> None:
-    st.subheader("📈 Learning Curve (Agent Improves Over Time)")
+    st.subheader("Learning curve (agent improves over time)")
     if not history:
         st.info("Train Incident Recovery to generate graphs.")
         return
     g1, g2 = st.columns(2)
     with g1:
-        st.pyplot(plotting.plot_reward_history(history), width="stretch")
+        _pyplot_no_jitter(plotting.plot_reward_history(history))
     with g2:
-        st.pyplot(plotting.plot_cost_history(history), width="stretch")
+        _pyplot_no_jitter(plotting.plot_cost_history(history))
     g3, g4 = st.columns(2)
     with g3:
-        st.pyplot(plotting.plot_uptime_history(history), width="stretch")
+        _pyplot_no_jitter(plotting.plot_uptime_history(history))
     with g4:
         # Keep resilient when Streamlit hot-reload caches an older plotting module.
         latency_plot = getattr(plotting, "plot_latency_history", None)
-        st.pyplot(latency_plot(history) if callable(latency_plot) else plotting.plot_cost_history(history), width="stretch")
+        _pyplot_no_jitter(
+            latency_plot(history) if callable(latency_plot) else plotting.plot_cost_history(history),
+        )
     combo_plot = getattr(plotting, "plot_cost_latency_uptime_combo", None)
     if callable(combo_plot):
-        st.pyplot(combo_plot(history), width="stretch")
+        _pyplot_no_jitter(combo_plot(history))
     st.caption("Reward improves over time → agent learning")
 
 
@@ -352,10 +359,10 @@ def main() -> None:
         )
 
     combined_trace = incident_trace + budget_trace
-    if any(bool(step.get("overridden_by_latency_agent")) for step in combined_trace):
-        _render_latency_override_banner()
-    elif any(bool(step.get("overridden_by_cost_agent")) for step in combined_trace):
-        st.error("⚠️ COST AGENT OVERRIDE → Multi-Agent Conflict")
+    if combined_trace and any(bool(step.get("overridden_by_latency_agent")) for step in combined_trace):
+        st.caption("Trace note: this run includes at least one latency-guard step (see decision box above).")
+    if combined_trace and any(bool(step.get("overridden_by_cost_agent")) for step in combined_trace):
+        st.caption("Trace note: this run includes at least one cost-override step (see decision box above).")
 
     if budget_trace:
         final_state = str(budget_trace[-1].get("uptime_state", "degraded"))

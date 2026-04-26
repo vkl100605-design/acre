@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACRE++ — When three bosses walk into a server room</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background: #FAFAF8;
+      color: #1A1A18;
+      line-height: 1.75;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .kicker {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #6B6B66;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 1.18;
+      color: #111110;
+      margin-bottom: 1rem;
+    }
+
+    h1 em { font-style: italic; }
+
+    .byline {
+      font-size: 13px;
+      color: #6B6B66;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #E5E4DE;
+    }
+
+    .tags { margin-bottom: 2rem; }
+
+    .tag {
+      display: inline-block;
+      background: #EFEDE6;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: #5F5E5A;
+      margin-right: 6px;
+    }
+
+    .lead {
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: #444441;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 1.35rem;
+      color: #2C2C2A;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      font-weight: 400;
+      margin: 3rem 0 1.1rem;
+      color: #111110;
+    }
+
+    .pullquote {
+      border-left: 3px solid #1D9E75;
+      padding: 0.9rem 1.5rem;
+      margin: 2.5rem 0;
+      background: #F0FAF5;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .pullquote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #0F6E56;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 2rem 0;
+    }
+
+    .metric-card {
+      background: #F1EFE8;
+      border-radius: 10px;
+      padding: 1.1rem 1.35rem;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: #6B6B66;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 5px;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 500;
+      color: #0F6E56;
+      line-height: 1;
+    }
+
+    .metric-sub {
+      font-size: 12px;
+      color: #888780;
+      margin-top: 5px;
+    }
+
+    .agents-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 1.75rem 0;
+    }
+
+    .agent-card {
+      border: 1px solid #E5E4DE;
+      border-radius: 12px;
+      padding: 1.1rem;
+      background: #fff;
+    }
+
+    .agent-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .dot-rl { background: #378ADD; }
+    .dot-cost { background: #EF9F27; }
+    .dot-latency { background: #1D9E75; }
+
+    .agent-name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #1A1A18;
+    }
+
+    .agent-desc {
+      font-size: 12px;
+      color: #6B6B66;
+      line-height: 1.55;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #E5E4DE;
+      margin: 3rem 0;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: #6B6B66;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E4DE;
+    }
+
+    .footer-note a {
+      color: #0F6E56;
+      text-decoration: none;
+    }
+
+    .footer-note a:hover { text-decoration: underline; }
+
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <p class="kicker">Reinforcement Learning &nbsp;·&nbsp; Cloud Ops &nbsp;·&nbsp; Open Source</p>
+
+    <h1>When three bosses walk into a server room: <em>the ACRE++ story</em></h1>
+
+    <p class="byline">Published April 26, 2026 &nbsp;·&nbsp; 6 min read</p>
+
+    <div class="tags">
+      <span class="tag">Multi-agent RL</span>
+      <span class="tag">Cloud infrastructure</span>
+      <span class="tag">Open source</span>
+    </div>
+
+    <p class="lead">It's 2 a.m. The dashboard looks fine — until it doesn't. Traffic spikes, errors creep up, latency starts eating your SLIs, and someone's already asking why the cloud bill jumped. ACRE++ was built for exactly this moment.</p>
+
+    <p>Most reinforcement learning environments are polite. They hand you a single scalar reward, one agent, and a well-behaved state space. The real world is none of those things. In production, you're simultaneously trying to keep the service alive, hold down costs, and not let users notice anything's wrong. These three goals don't cooperate — and ACRE++ doesn't pretend they do.</p>
+
+    <div class="pullquote">
+      <p>"It's one system squeezed by three masters — and a single controller still has to pick the next move."</p>
+    </div>
+
+    <h2>What ACRE++ actually is</h2>
+
+    <p>ACRE++ is a compact, hackathon-ready RL environment that simulates cloud-style operations under realistic constraints: delayed capacity effects, noisy telemetry, and three competing agents who can disagree with each other on every single step.</p>
+
+    <div class="agents-row">
+      <div class="agent-card">
+        <div class="agent-dot dot-rl"></div>
+        <p class="agent-name">RL agent</p>
+        <p class="agent-desc">Tabular Q-learning. Proposes actions based on learned long-horizon value.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-dot dot-cost"></div>
+        <p class="agent-name">Cost agent</p>
+        <p class="agent-desc">Rule-based FinOps guardrails. Blocks wasteful scaling decisions.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-dot dot-latency"></div>
+        <p class="agent-name">Latency agent</p>
+        <p class="agent-desc">UX guardrail. Escalates when user-facing latency crosses thresholds.</p>
+      </div>
+    </div>
+
+    <p>When these agents disagree, overrides fire. The final action executed may not be what the RL policy proposed — and that's by design. It mirrors how real SRE teams work: the on-call engineer makes a call, but the FinOps ticket and the SLO dashboard both have veto power.</p>
+
+    <h2>The numbers that matter</h2>
+
+    <p>Talking about multi-agent conflict is easy. Showing that a trained policy actually handles it better than random probing is harder. ACRE++ ships with a 10-episode evaluation on the <em>incident_recovery</em> task. Same environment, same agents, same override rules — only the RL policy changes.</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <p class="metric-label">Episode reward</p>
+        <p class="metric-value">+18%</p>
+        <p class="metric-sub">−30.66 → −25.10 vs random</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Avg latency</p>
+        <p class="metric-value">−7 ms</p>
+        <p class="metric-sub">194.3 → 187.3 ms per step</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Uptime</p>
+        <p class="metric-value">+2.3 pts</p>
+        <p class="metric-sub">42.7% → 45.0%</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Total cost</p>
+        <p class="metric-value">−2.06</p>
+        <p class="metric-sub">114.48 → 112.42</p>
+      </div>
+    </div>
+
+    <p>What makes these numbers meaningful isn't any single metric — it's that all four move in the right direction simultaneously. That's the whole point. A naive approach might squeeze latency at the cost of a bigger bill, or cut costs by letting uptime suffer. The trained policy earns better outcomes across every dimension at once.</p>
+
+    <h2>Why "emergent behavior" is more than a buzzword here</h2>
+
+    <p>In most single-agent RL setups, the agent learns to exploit whatever the reward function rewards. Tweak the reward and you get a different agent. ACRE++ adds a layer of friction that makes this harder to game: the cost and latency agents can override the RL policy's proposals, so raw reward maximization runs into real resistance.</p>
+
+    <p>The result is that outcomes aren't scripted. They emerge from who wins each negotiation at each timestep — and that makes the learning signal richer and the learned policy more robust. You don't get a policy tuned for the eval; you get one that has genuinely learned to navigate disagreement.</p>
+
+    <div class="pullquote">
+      <p>"If your RL can't survive this room, it won't survive the pager — ACRE++ is the room."</p>
+    </div>
+
+    <h2>What's inside the environment</h2>
+
+    <p>The environment tracks traffic, health, errors, latency (in ms), step cost, capacity, and risk — all with delayed effects and noisy signals so the policy can't see consequences before they arrive. The available operator-style actions mirror real choices: hold, scale up, scale down, restart, rollback.</p>
+
+    <p>Three task presets come out of the box. <em>Stability spike</em> tests the policy under sudden traffic pressure. <em>Incident recovery</em> simulates the messy aftermath of a bad deploy. <em>Budget guardrail</em> puts cost discipline in direct tension with reliability. Each scenario exposes a different facet of the same underlying conflict.</p>
+
+    <h2>Running it yourself</h2>
+
+    <p>Training takes a single command. The Streamlit UI makes the agent's decision-making visible in real time — you can watch overrides fire, see latency pressure build, and observe the policy stabilize across episodes. There's also a live demo on Hugging Face Spaces and a Colab notebook for cloud-based training without any local setup.</p>
+
+    <hr>
+
+    <p>ACRE++ is openly licensed under Apache 2.0. The source, training notebooks, and pre-computed artifacts are all on GitHub. Whether you're researching multi-objective RL, building production-grade autoscaling policies, or just curious what happens when you put cost and latency agents in a room with a learner — it's a good place to start.</p>
+
+    <p class="footer-note">
+      Source code: <a href="https://github.com/vkl100605-design/acre">github.com/vkl100605-design/acre</a> &nbsp;·&nbsp;
+      Live demo: <a href="https://huggingface.co/spaces/vkl1006/acre">huggingface.co/spaces/vkl1006/acre</a>
+    </p>
+
+  </div>
+</body>
+</html>

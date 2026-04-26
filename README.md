@@ -118,7 +118,13 @@ uvicorn openenv_server:app --host 0.0.0.0 --port 8000
 
 ### Live on Hugging Face Spaces (Docker)
 
-Public Space: **[vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre)** — OpenEnv API (FastAPI) is served from the repo `Dockerfile` (port **7860** per Space rules).
+Public Space: **[vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre)**
+
+The Space container runs **nginx** on port **7860** and routes:
+
+- **`/`** — full **Streamlit** demo (same as `streamlit run app.py`: scenarios, training charts, multi-agent).
+- **OpenEnv HTTP API (FastAPI)**: **`/health`**, **`POST /reset`**, **`POST /step`**, **`GET /state`**, and **`GET /api`** (API metadata JSON, same as the old `GET /` when the server runs without nginx).
+- **`/docs`** — Swagger for the same FastAPI.
 
 **Push an update to the Space (must be the Space owner’s account):** create an access token with **Write** (repositories) at [HF token settings](https://huggingface.co/settings/tokens), then from this repo’s root:
 
@@ -237,7 +243,7 @@ These provide direct evidence of learning behavior and trade-offs.
 
 ## 10) Docker / Entry Point
 
-`Dockerfile` uses `requirements_space.txt` (API only, no torch) and listens on **7860** for Hugging Face Spaces.
+`Dockerfile` uses `requirements_space.txt` (Streamlit + FastAPI, no torch in image), **nginx** on **7860**, and `space/entrypoint.sh` to start Uvicorn + Streamlit. Same layout as the Hugging Face Space.
 
 Build and run locally:
 
@@ -246,7 +252,7 @@ docker build -t acrepp .
 docker run -p 7860:7860 acrepp
 ```
 
-Then open `http://127.0.0.1:7860/health` (or `/` for API name).
+Then open **`http://127.0.0.1:7860/`** for the **Streamlit UI**; `http://127.0.0.1:7860/health` and `http://127.0.0.1:7860/api` for the API.
 
 ---
 

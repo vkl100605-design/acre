@@ -66,6 +66,7 @@ reward:
 
 endpoints:
   health: GET /health
+  meta: GET /api
   reset: POST /reset
   step: POST /step
   state: GET /state

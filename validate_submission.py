@@ -68,9 +68,17 @@ def check_openenv_api() -> None:
     if health.get("status") != "healthy":
         raise RuntimeError("/health returned an invalid response")
 
-    root = request_json("GET", "/")
+    # Space bundle may serve Streamlit on public `/` via nginx; Uvicorn still exposes `/` and `/api` on :8000
+    root: dict = {}
+    for path in ("/", "/api"):
+        try:
+            root = request_json("GET", path)
+            if root.get("status") == "ok":
+                break
+        except Exception:  # noqa: BLE001
+            continue
     if root.get("status") != "ok":
-        raise RuntimeError("/ root endpoint is invalid")
+        raise RuntimeError("GET / or GET /api must return JSON with status: ok for OpenEnv API")
 
     reset = request_json("POST", "/reset", {"task_id": "stability_spike", "seed": 11})
     if "observation" not in reset or "info" not in reset or "done" not in reset:

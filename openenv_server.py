@@ -23,6 +23,13 @@ runtime = OpenEnvAdapter(task_id="incident_recovery")
 
 @app.get("/")
 def root() -> Dict[str, str]:
+    """Served on direct Uvicorn; on HF Space nginx may route `/` to Streamlit instead."""
+    return {"name": "ACRE++ OpenEnv API", "status": "ok"}
+
+
+@app.get("/api")
+def api_meta() -> Dict[str, str]:
+    """Same JSON as root; use when `/` is the Streamlit UI (reverse proxy)."""
     return {"name": "ACRE++ OpenEnv API", "status": "ok"}
 
 

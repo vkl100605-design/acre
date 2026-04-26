@@ -1,5 +1,6 @@
 __pycache__/
-artifacts/
+# Keep committed training JSON/PNGs in image for Streamlit; exclude heavy LLM checkouts
+artifacts/llm_ppo
 *.pyc
 *.pyo
 *.pyd

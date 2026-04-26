@@ -1,0 +1,4 @@
+# API-only: OpenEnv FastAPI on Hugging Face Spaces (no torch/trl; smaller + faster build)
+fastapi>=0.100
+uvicorn[standard]>=0.23
+pydantic>=2

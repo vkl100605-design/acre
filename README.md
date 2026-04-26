@@ -105,6 +105,10 @@ Run locally:
 uvicorn openenv_server:app --host 0.0.0.0 --port 8000
 ```
 
+### Live on Hugging Face Spaces (Docker)
+
+Public Space: **[vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre)** — OpenEnv API (FastAPI) is served from the repo `Dockerfile` (port **7860** per Space rules).
+
 ---
 
 ## 6) Training Pipelines
@@ -210,14 +214,16 @@ These provide direct evidence of learning behavior and trade-offs.
 
 ## 10) Docker / Entry Point
 
-`Dockerfile` is configured for OpenEnv API deployment and starts the FastAPI runtime.
+`Dockerfile` uses `requirements_space.txt` (API only, no torch) and listens on **7860** for Hugging Face Spaces.
 
-Build and run:
+Build and run locally:
 
 ```bash
 docker build -t acrepp .
-docker run -p 8000:8000 acrepp
+docker run -p 7860:7860 acrepp
 ```
+
+Then open `http://127.0.0.1:7860/health` (or `/` for API name).
 
 ---
 

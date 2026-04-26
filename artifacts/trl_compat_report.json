@@ -1,0 +1,22 @@
+{
+  "trl_available": false,
+  "unsloth_available": false,
+  "dataset_rows": 88,
+  "sample": {
+    "task_id": "incident_recovery",
+    "state_text": "load=1.09x, health=2, error=0.00, cost=0.00, latency=0.0ms",
+    "action": "hold",
+    "reward": 1.1864812470846986,
+    "policy_source": "trained_q_agent",
+    "next_state": 402
+  },
+  "ppo_config": {
+    "batch_size": 4,
+    "mini_batch_size": 1,
+    "learning_rate": 1e-05,
+    "note": "trl not installed; using compatibility stub"
+  },
+  "dataset_path": "artifacts\\trl_interactions.jsonl",
+  "model_path": "artifacts\\q_table_clean.json",
+  "policy_source": "trained_q_agent"
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "incident_recovery",
+  "best_episode_reward": 25.574174102170087,
+  "average_reward": -17.28821613934467,
+  "reward_improvement": 9.939921346223102,
+  "reward_improvement_pct": 32.420277963140265,
+  "cost_reduction": 8.446712085921149,
+  "uptime_improvement": 3.636363636363633,
+  "latency_improvement_ms": 17.23293232017241,
+  "trained_eval": {
+    "reward": -20.71965954177589,
+    "cost": 106.03190826060799,
+    "uptime": 46.36363636363636,
+    "avg_latency_ms": 177.04959462977567,
+    "override_rate": 22.727272727272727,
+    "latency_override_rate": 15.454545454545457
+  },
+  "random_eval": {
+    "reward": -30.65958088799899,
+    "cost": 114.47862034652914,
+    "uptime": 42.72727272727273,
+    "avg_latency_ms": 194.28252694994808,
+    "override_rate": 22.272727272727273,
+    "latency_override_rate": 24.545454545454547
+  }
+}

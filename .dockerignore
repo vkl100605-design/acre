@@ -1,0 +1,8 @@
+__pycache__/
+artifacts/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+README.md

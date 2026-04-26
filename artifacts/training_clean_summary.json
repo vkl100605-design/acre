@@ -1,0 +1,33 @@
+{
+  "task_id": "incident_recovery",
+  "episodes": 45,
+  "seed": 42,
+  "avg_reward": -20.661514925933538,
+  "avg_cost": 109.84193545121941,
+  "avg_latency_ms": 172.4411146999542,
+  "reward_curve_png": "artifacts\\reward_curve.png",
+  "latency_curve_png": "artifacts\\latency_curve.png",
+  "model_path": "artifacts\\q_table_clean.json",
+  "trained_eval": {
+    "reward": -25.102218776159624,
+    "cost": 112.42223974915471,
+    "uptime": 45.0,
+    "avg_latency_ms": 187.32757380513667,
+    "override_rate": 17.727272727272727,
+    "latency_override_rate": 21.81818181818182
+  },
+  "random_eval": {
+    "reward": -30.65958088799899,
+    "cost": 114.47862034652914,
+    "uptime": 42.72727272727273,
+    "avg_latency_ms": 194.28252694994808,
+    "override_rate": 22.272727272727273,
+    "latency_override_rate": 24.545454545454547
+  },
+  "reward_improvement": 5.5573621118393675,
+  "reward_improvement_pct": 18.126021135581382,
+  "cost_reduction": 2.056380597374428,
+  "uptime_improvement": 2.2727272727272734,
+  "latency_improvement_ms": 6.954953144811412,
+  "baseline_text": "Random -> Reward: -30.66 | Cost: 114.48 | Uptime: 42.7% | Latency: 194.3 ms\nTrained -> Reward: -25.10 | Cost: 112.42 | Uptime: 45.0% | Latency: 187.3 ms"
+}

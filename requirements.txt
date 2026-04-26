@@ -1,0 +1,13 @@
+streamlit
+matplotlib
+pandas
+fastapi
+uvicorn
+torch
+transformers
+trl
+accelerate
+datasets
+sentencepiece
+protobuf
+safetensors

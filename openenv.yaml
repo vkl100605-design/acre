@@ -1,0 +1,71 @@
+# OpenEnv manifest for ACRE++.
+name: acre-plus-plus
+version: "1.0.0"
+description: >
+  Autonomous Cloud Reliability vs Cost Optimization using Multi-Agent RL.
+author: Codex
+runtime:
+  cmd: uvicorn openenv_server:app --host 0.0.0.0 --port 8000
+
+tasks:
+  - id: stability_spike
+    name: Stability Under Traffic Spike
+    description: Handle a sudden traffic spike while balancing reliability and cost.
+    difficulty: easy
+    max_steps: 20
+    reward_range: [0.0, 1.0]
+
+  - id: incident_recovery
+    name: Incident Recovery
+    description: Recover a degraded service with delayed effects and noisy metrics.
+    difficulty: medium
+    max_steps: 22
+    reward_range: [0.0, 1.0]
+
+  - id: budget_guardrail
+    name: Budget Guardrail
+    description: Minimize wasteful spending while preserving service uptime.
+    difficulty: hard
+    max_steps: 24
+    reward_range: [0.0, 1.0]
+
+action_space:
+  type: object
+  description: Reliability agent action space.
+  properties:
+    action:
+      type: string
+      enum: [hold, scale_up, scale_down, restart, rollback]
+
+observation_space:
+  type: object
+  description: Structured cloud telemetry with noisy partial observability.
+  properties:
+    task_id: { type: string }
+    step: { type: integer }
+    traffic_demand: { type: number }
+    traffic_level: { type: string }
+    capacity: { type: integer }
+    health: { type: string }
+    deployment_risk: { type: string }
+    load_ratio: { type: number }
+    error_rate: { type: number }
+    step_cost: { type: number }
+    latency_ms: { type: number }
+    last_action: { type: string }
+    reward: { type: number }
+    score: { type: number }
+    done: { type: boolean }
+    overridden_by_cost_agent: { type: boolean }
+    overridden_by_latency_agent: { type: boolean }
+
+reward:
+  min: 0.0
+  max: 1.0
+  description: Normalized score used by the grader and inference script.
+
+endpoints:
+  health: GET /health
+  reset: POST /reset
+  step: POST /step
+  state: GET /state

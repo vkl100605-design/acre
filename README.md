@@ -200,8 +200,7 @@ These provide direct evidence of learning behavior and trade-offs.
 - **Judging notes (official)**: [What judges look for](https://docs.google.com/document/d/1Odznuzwtb1ecDOm2t6ToZd4MuMXXfO6vWUGcxbC6mFs/edit?tab=t.0#bookmark=kix.2dz0x0nie3me)
 
 - **Colab notebook** (upload/clone this repo, then run top-to-bottom): [`ACRExx_Training_Colab.ipynb`](./ACRExx_Training_Colab.ipynb)  
-  After you push to GitHub, “Open in Colab” URL pattern:  
-  `https://colab.research.google.com/github/<USER>/<REPO>/blob/main/ACRExx_Training_Colab.ipynb`
+  **Open in Colab:** [colab.research.google.com/.../acre/.../ACRExx_Training_Colab.ipynb](https://colab.research.google.com/github/vkl100605-design/acre/blob/main/ACRExx_Training_Colab.ipynb)
 
 - **Local training (same as Colab cells)**:
   - Q-learning + reward/latency PNGs: `python train_clean.py --episodes 80 --task-id incident_recovery --seed 42`

@@ -1,3 +1,14 @@
+---
+title: ACRE++ OpenEnv
+emoji: 🌩️
+colorFrom: indigo
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+license: apache-2.0
+---
+
 # ACRE++: Multi-Agent RL for Cloud Cost, Reliability, and User Experience
 
 ACRE++ is a production-inspired simulation where an RL controller must keep cloud systems healthy while balancing:
@@ -108,6 +119,18 @@ uvicorn openenv_server:app --host 0.0.0.0 --port 8000
 ### Live on Hugging Face Spaces (Docker)
 
 Public Space: **[vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre)** — OpenEnv API (FastAPI) is served from the repo `Dockerfile` (port **7860** per Space rules).
+
+**Push an update to the Space (must be the Space owner’s account):** create an access token with **Write** (repositories) at [HF token settings](https://huggingface.co/settings/tokens), then from this repo’s root:
+
+```bash
+# Option A: Git (username = your HF username, e.g. vkl1006)
+huggingface-cli login
+git remote add space https://huggingface.co/spaces/vkl1006/acre
+git push space main
+# If the Space had only the default file:  git push space main --force
+```
+
+If you see `403` / not authorized, the token is from another user or is read-only; log in as **[vkl1006](https://huggingface.co/vkl1006)** (or whoever owns the Space) and use a **Write** token. Revoke any token that was exposed.
 
 ---
 

@@ -130,7 +130,8 @@ def main() -> None:
     ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
 
     model_path = ARTIFACT_DIR / "q_table_clean.json"
-    dataset = collect_interaction_dataset(model_path=model_path)
+    # Enough rollouts for >=50 JSONL rows (episode length × episodes).
+    dataset = collect_interaction_dataset(model_path=model_path, episodes=8)
     dataset_path = ARTIFACT_DIR / "trl_interactions.jsonl"
     with dataset_path.open("w", encoding="utf-8") as f:
         for row in dataset:

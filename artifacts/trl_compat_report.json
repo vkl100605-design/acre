@@ -1,5 +1,5 @@
 {
-  "trl_available": false,
+  "trl_available": true,
   "unsloth_available": false,
   "dataset_rows": 88,
   "sample": {
@@ -13,8 +13,7 @@
   "ppo_config": {
     "batch_size": 4,
     "mini_batch_size": 1,
-    "learning_rate": 1e-05,
-    "note": "trl not installed; using compatibility stub"
+    "learning_rate": 1e-05
   },
   "dataset_path": "artifacts\\trl_interactions.jsonl",
   "model_path": "artifacts\\q_table_clean.json",

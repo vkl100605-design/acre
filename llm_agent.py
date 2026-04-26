@@ -38,6 +38,7 @@ def build_sre_messages(
     traffic = _traffic_level(float(info.get("traffic_demand", 0.0)))
     cost = float(info.get("step_cost", 0.0))
     latency = float(info.get("latency_ms", 0.0))
+    err = float(info.get("error_rate", 0.0))
     raw_ct = str(info.get("conflict_type", "none") or "none")
     if raw_ct in ("", "none"):
         ct = "none"
@@ -48,21 +49,20 @@ def build_sre_messages(
             info.get("overridden_by_latency_agent")
         )) else "none"
 
-    user_block = f"""
-System State:
+    user_block = f"""You are managing a cloud system.
 
-* Traffic: {traffic}
-* Load: {load_ratio:.2f}x
-* Health: {health_s}
-* Cost: {cost:.2f}
-* Latency: {latency:.1f} ms
+The current load is {load_ratio:.2f}x normal capacity.
+System health score is {health} ({health_s}).
+Error rate is {err:.2f}.
+Latency is {latency:.1f} ms.
+Current step cost is {cost:.2f}.
+Traffic level is {traffic}.
 
 Cost Agent Suggestion: {_format_agent_action(cost_suggestion)}
 Latency Agent Suggestion: {_format_agent_action(latency_suggestion)}
+Conflict context: {ct}
 
-Conflict Type: {ct}
-
-What action should be taken and why?
+What action should be taken? Choose one of: hold, scale_up, scale_down, restart, rollback.
 
 Respond ONLY in JSON:
 {{

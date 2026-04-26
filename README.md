@@ -19,6 +19,19 @@ ACRE++ is a production-inspired simulation where an RL controller must keep clou
 
 This repository keeps the original Streamlit demo and environment logic, and now adds OpenEnv-style compatibility and hackathon-ready training evidence.
 
+| Where | Link |
+|--------|------|
+| **Source (GitHub)** | [vkl100605-design/acre](https://github.com/vkl100605-design/acre) |
+| **Live demo (Hugging Face Space)** | [vkl1006/acre](https://huggingface.co/spaces/vkl1006/acre) — Streamlit on `/`, API on `/health`, `/reset`, `/step`, `/state`, `/api` |
+| **Re-run in Colab** | [Open `ACRExx_Training_Colab.ipynb` in Colab](https://colab.research.google.com/github/vkl100605-design/acre/blob/main/ACRExx_Training_Colab.ipynb) |
+| **Judging criteria** | [What judges look for (Google Doc)](https://docs.google.com/document/d/1Odznuzwtb1ecDOm2t6ToZd4MuMXXfO6vWUGcxbC6mFs/edit?tab=t.0#bookmark=kix.2dz0x0nie3me) |
+
+**Tasks** (see `openenv.yaml` and `tasks.py`): `stability_spike`, `incident_recovery`, `budget_guardrail` — all use the same 5 action names (`hold` … `rollback`).
+
+**Check OpenEnv + API locally:** `python validate_submission.py` (starts a short Uvicorn test on `127.0.0.1:8000` and validates `openenv.yaml`).
+
+`requirements.txt` = full project (incl. `torch` / `trl` for `train_llm.py`). `requirements_space.txt` = only what the Docker/Space image installs (no heavy ML).
+
 ---
 
 ## 1) Problem Statement
